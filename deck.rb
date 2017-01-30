@@ -1,4 +1,3 @@
-require 'pry'
 require_relative 'card'
 
 class Deck
@@ -16,14 +15,14 @@ class Deck
      @ranks.each do |rank|
        if suit == 'Spades' || suit == 'Clubs'
          color = 'Black'
-       else 
+       else
          color = 'Red'
        end
        @cards << Card.new(rank, suit, color)
      end
    end
  end
- 
+
  def shuffle
    @cards.shuffle!
  end
@@ -34,7 +33,3 @@ class Deck
     hand
   end
 end
-
-
-
-

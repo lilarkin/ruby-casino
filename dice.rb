@@ -1,4 +1,5 @@
 class Dice
+
  def initialize
    roll
  end

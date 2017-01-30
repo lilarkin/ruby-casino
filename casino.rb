@@ -25,8 +25,7 @@ class Casino
     when 1
       Slots.new(@player)
     when 2
-      puts 'You play High / Low.'
-      # HighLow.new
+      HighLow.new(@player)
     else
       puts 'Invalid Input'
       menu
