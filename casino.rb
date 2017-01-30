@@ -2,6 +2,7 @@ require 'pry'
 require 'colorize'
 require 'artii'
 require_relative 'player'
+require_relative 'slots'
 
 class Casino
   # TODO: Handle Mutiple players
@@ -23,8 +24,7 @@ class Casino
 
     case gets.strip.to_i
     when 1
-      puts 'You play slots.'
-      #Slots.new
+      Slots.new
     when 2
       puts 'You play High / Low.'
       # HighLow.new
