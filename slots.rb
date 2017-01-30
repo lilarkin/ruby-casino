@@ -61,7 +61,6 @@ class Slots
     puts "You win $#{payout}."
     @player.get_payout(payout)
     puts "Now you have $#{@player.wallet.amount} money."
-
   end
 
   def quit
