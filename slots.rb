@@ -4,14 +4,13 @@ class Slots
   attr_accessor :reel, :payout, :results, :bet
 
   def initialize
-    # @reel in order of value
     @reel = ['cherry', 'watermelon', 'bell', 'BAR', '7']
 
     # payout value is multiplier
     @payout = { 'cherry': 1, 'watermelon': 2, 'bell': 3, 'BAR': 4, '7': 5}
     @results = []
 
-    # cost for playing: 1$
+    # TODO: rename 
     @bet = 1
 
     puts '*** Welcome to the Slot Machines ***'
@@ -20,7 +19,8 @@ class Slots
 
   def choose_to_play 
     puts 'Please insert $1 to play.'
-    puts 'Enter 1 to spin or 2 to quit.'
+    puts '  1) spin'  
+    puts '  2) quit.'
     case gets.strip.to_i
     when 1
       play
@@ -37,10 +37,6 @@ class Slots
     spin
     win_or_lose
     choose_to_play
-  end
-
-  def quit
-    puts 'Thanks for playing!'
   end
 
   def spin
@@ -62,14 +58,13 @@ class Slots
     payout = @bet * @payout[@results.first.to_sym]
     puts "You win $#{payout}."
   end
+
+  def quit
+    puts 'Thanks for playing!'
+  end
 end
 
-
-s = Slots.new
-
 # takes money
-# calculate if player won
-# returns output and money/no money
 
 # BONUS
 # probability
