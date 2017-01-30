@@ -14,14 +14,39 @@ class Slots
     # cost for playing: 1$
     @bet = 1
 
+    puts '*** Welcome to the Slot Machines ***'
+    choose_to_play
   end
 
-  #Interface: (play) method
+  def choose_to_play 
+    puts 'Please insert $1 to play.'
+    puts 'Enter 1 to spin or 2 to quit.'
+    case gets.strip.to_i
+    when 1
+      play
+    when 2 
+      quit
+    else 
+      "Invalid Input"
+      choose_to_play
+    end
+  end
+
+  def play
+    @results.clear
+    spin
+    win_or_lose
+    choose_to_play
+  end
+
+  def quit
+    puts 'Thanks for playing!'
+  end
 
   def spin
      3.times { @results.push(@reel.sample) }
-     puts @results
-     win_or_lose
+    @results.each { |symbol| print "| #{symbol} " }
+    print "|\n"
   end
 
   def win_or_lose
@@ -35,14 +60,12 @@ class Slots
 
   def payout
     payout = @bet * @payout[@results.first.to_sym]
-    puts "You won #{payout}."
+    puts "You win $#{payout}."
   end
 end
 
 
 s = Slots.new
-s.results = ['7','7','7']
-s.payout
 
 # takes money
 # calculate if player won
@@ -51,3 +74,4 @@ s.payout
 # BONUS
 # probability
 # free spin
+# play different slots (dif values)
