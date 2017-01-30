@@ -12,13 +12,27 @@ class Casino
     puts "Welcome to the Casino".colorize(:magenta)
     @player = Player.new
     puts "What game do you want to play, #{@player.name}?"
-    # show a casino game menu
-    # let the player choose a game
-    # initialize the new game passing teh player as a parameter
+    menu
   end
 
   def menu
     puts '*** Casino Menu ***'
+    puts '1. Slots'
+    puts '2. High / Low'
+    print 'Choose a Game: '
+
+    case gets.strip.to_i
+    when 1
+      puts 'You play slots.'
+      #Slots.new
+    when 2
+      puts 'You play High / Low.'
+      # HighLow.new
+    else
+      puts 'Invalid Input'
+      menu
+    end
+
   end
 end
 
