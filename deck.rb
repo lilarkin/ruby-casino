@@ -1,10 +1,12 @@
+require 'pry'
 require_relative 'card'
+require_relative 'card_game_rules'
 
 class Deck
  attr_accessor :cards
 
  def initialize
-   @ranks = %w(A 2 3 4 5 6 7 8 9 10 J Q K)
+   @ranks = CardGameRules::RANKS
    @suits = %w(Spades Diamonds Clubs Hearts)
    @cards = []
    generate_deck
@@ -33,7 +35,9 @@ class Deck
       num_of_cards.times { hand << @cards.pop }
       return hand
     else
-      return @cards.pop 
+      return @cards.pop
     end
   end
 end
+
+Deck.new

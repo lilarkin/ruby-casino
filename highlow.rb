@@ -34,23 +34,32 @@ class HighLow
   def deal_cards
     @deck.shuffle
     @first_card = @deck.draw
-    puts "The first card is: #{@first_card.value}"
+    puts "The first card is: #{@first_card.name}"
     puts 'The next card will be:'
     puts '  1) higher'
     puts '  2) lower'
-    choice = gets.chomp.to_i
+    @choice = gets.chomp.to_i
     # TODO: make sure they only choose 1 or 2 or else error
     @second_card = @deck.draw
-    puts "The second card is #{@second_card.value}"
+    puts "The second card is #{@second_card.name}"
+    win_or_lose
   end
 
  def win_or_lose
+   # TODO: if cards equal win condition
+   if @choice == 1 && @first_card.value < @second_card.value
+     puts "WIN"
+   elsif @choice == 2 && @first_card.value > @second_card.value
+     puts "WIN"
+   else
+     puts "LOSE"
+   end
     #if win
       # payout
     # else
     # play again
   end
-  
+
   def play
     # a card is drawn
     # player chooses high or low
@@ -59,8 +68,6 @@ class HighLow
     # players wins or lose
     win_or_lose
   end
-
- 
 
   def payout
     # pays double the bet
