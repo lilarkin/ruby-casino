@@ -1,19 +1,33 @@
 require 'pry'
+require_relative 'player'
 require_relative 'deck'
 require_relative 'dice'
 
 class HighLow
-  attr_accessor :player
+  attr_accessor :player, :bet
 
   def initialize(player)
     @player = player
-
+    @bet = 0
     puts "*** Welcome, #{@player.name}, to High and Low ***"
-    dealer
+    make_bet
   end
 
-  def dealer
-    # player places bet
+  def choose_to_play
+    # user chooses to quit
+  end
+
+  def make_bet
+    puts "How much do you want to bet?"
+    bet = gets.chomp.to_i
+    if bet == 0
+      puts "Invalid Bet"
+      make_bet
+    end
+    @bet = bet
+    @player.place_bet(@bet)
+    play
+    binding.pry
   end
 
   def play
@@ -40,3 +54,5 @@ class HighLow
     puts 'Thanks for playing!'
   end
 end
+
+HighLow.new(Player.new)

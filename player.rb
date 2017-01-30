@@ -16,6 +16,7 @@ class Player
 
   def place_bet(amount)
     @wallet.amount -= amount
+    # TODO: when amount is greater than money in wallet
   end
 
 end
