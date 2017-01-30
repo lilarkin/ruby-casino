@@ -24,7 +24,7 @@ class Casino
 
     case gets.strip.to_i
     when 1
-      Slots.new
+      Slots.new(@player)
     when 2
       puts 'You play High / Low.'
       # HighLow.new

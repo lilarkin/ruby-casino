@@ -1,33 +1,35 @@
 require 'pry'
 
 class Slots
-  attr_accessor :reel, :payout, :results, :bet
+  attr_accessor :player, :reel, :payout, :results, :bet
 
-  def initialize
+  def initialize(player)
+    @player = player
     @reel = ['cherry', 'watermelon', 'bell', 'BAR', '7']
-
     # payout value is multiplier
     @payout = { 'cherry': 1, 'watermelon': 2, 'bell': 3, 'BAR': 4, '7': 5}
     @results = []
 
-    # TODO: rename 
+    # TODO: rename
     @bet = 1
 
-    puts '*** Welcome to the Slot Machines ***'
+    puts "*** Welcome, #{@player.name}, to the Slot Machines ***"
     choose_to_play
   end
 
-  def choose_to_play 
+  def choose_to_play
     puts 'Please insert $1 to play.'
-    puts '  1) spin'  
-    puts '  2) quit.'
+    puts '  1) spin'
+    puts '  2) quit'
     case gets.strip.to_i
     when 1
+      puts "You have $#{@player.wallet.amount} money."
+      @player.place_bet(1)
       play
-    when 2 
+    when 2
       quit
-    else 
-      "Invalid Input"
+    else
+      puts "Invalid Input"
       choose_to_play
     end
   end
@@ -57,14 +59,15 @@ class Slots
   def payout
     payout = @bet * @payout[@results.first.to_sym]
     puts "You win $#{payout}."
+    @player.get_payout(payout)
+    puts "Now you have $#{@player.wallet.amount} money."
+
   end
 
   def quit
     puts 'Thanks for playing!'
   end
 end
-
-# takes money
 
 # BONUS
 # probability
