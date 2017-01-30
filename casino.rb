@@ -18,6 +18,7 @@ class Casino
   end
 
   def menu
+    putd '*** Casino Menu ***'
   end
 end
 
