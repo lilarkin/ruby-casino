@@ -22,6 +22,3 @@ end
 #  def show_sum
 #    print "Sum of dice is ", @die1 + @die2, ".\n"
 #    end
-
-
-
