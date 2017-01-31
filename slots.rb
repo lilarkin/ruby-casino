@@ -11,10 +11,10 @@ class Slots
     @results = []
     @player.bet = 1
     puts "*** Welcome, #{@player.name}, to the Slot Machines ***"
-    choose_to_play
+    play
   end
 
-  def choose_to_play
+  def play
     puts 'Please insert $1 to play.'
     puts '  1) spin'
     puts '  2) quit'
@@ -24,18 +24,15 @@ class Slots
       @player.wallet.amount -= 1
       play
     when 2
-      quit
+      @player.casino.menu
     else
       puts "Invalid Input"
-      choose_to_play
+      play
     end
-  end
-
-  def play
     @results.clear
     spin
     win_or_lose
-    choose_to_play
+    play
   end
 
   def spin
@@ -52,10 +49,6 @@ class Slots
     else
       puts "You lose."
     end
-  end
-
-  def quit
-    puts 'Thanks for playing!'
   end
 end
 

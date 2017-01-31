@@ -14,7 +14,7 @@ class HighLow
     @player.place_bet
     deal_cards
     win_or_lose
-    choose_to_play
+    @player.play_again?
   end
 
   def deal_cards
@@ -41,25 +41,5 @@ class HighLow
    else
      puts "You lose."
    end
-  end
-
-  def choose_to_play
-    # TODO: do we want to make this a module?
-    puts 'Do you want to keep playing or quit?'
-    puts '  1) play'
-    puts '  2) quit'
-    case gets.strip.to_i
-    when 1
-      play
-    when 2
-      quit
-    else
-      'Invalid Input'
-    end
-  end
-
-  def quit
-    puts 'Thanks for playing!'
-    @casino.menu
   end
 end

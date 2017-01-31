@@ -1,9 +1,10 @@
 require_relative 'wallet'
 
 class Player
-  attr_accessor :name, :wallet, :bet
+  attr_accessor :name, :wallet, :bet, :casino
 
-  def initialize
+  def initialize(casino)
+    @casino = casino
     puts "What is your name?"
     @name = gets.strip
     @bet = 0
@@ -29,4 +30,19 @@ class Player
     @wallet.amount -= @bet
   end
 
+  def play_again?
+    # TODO: do we want to make this a module?
+    puts 'Do you want to keep playing or quit?'
+    puts '  1) play'
+    puts '  2) quit'
+    case gets.strip.to_i
+    when 1
+      play
+    when 2
+      puts "Thanks for playing."
+      @casino.menu
+    else
+      'Invalid Input'
+    end
+  end
 end

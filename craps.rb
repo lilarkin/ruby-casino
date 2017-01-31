@@ -16,7 +16,7 @@ class Craps
     @player.place_bet
     choose_pass_line
     come_out_roll
-    choose_to_play
+    @player.play_again?
   end
 
   def choose_pass_line
@@ -106,25 +106,4 @@ class Craps
       end
     end
   end
-
-  def choose_to_play
-  # TODO: do we want to make this a module?
-    puts 'Do you want to keep playing or quit?'
-    puts '  1) play'
-    puts '  2) quit'
-   case gets.strip.to_i
-     when 1
-       play
-     when 2
-       quit
-   else
-     'Invalid Input'
-   end
- end
-
- def quit
-   puts 'Thanks for playing!'
- end
 end
-
-Craps.new(Player.new)

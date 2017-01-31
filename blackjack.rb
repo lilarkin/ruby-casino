@@ -6,7 +6,6 @@ class Blackjack
 
   def initialize(player)
     @player = player
-    @bet
     @deck = Deck.new
     @deck.shuffle
     @dealer_hand = []
@@ -88,27 +87,12 @@ class Blackjack
   def won
     puts "You won"
     puts "You get the payout"
-    choose_to_play
+    @player.play_again?
   end
 
   def lose
     puts "You lose"
-    choose_to_play
-  end
-
-  def choose_to_play
-    # TODO: do we want to make this a module?
-    puts 'Do you want to keep playing or quit?'
-    puts '  1) play'
-    puts '  2) quit'
-    case gets.strip.to_i
-    when 1
-      new_game
-    when 2
-      quit
-    else
-      'Invalid Input'
-    end
+    @player.play_again?
   end
 
   def quit
@@ -122,5 +106,4 @@ class Blackjack
     @player_stay = false
     play
   end
-
 end
