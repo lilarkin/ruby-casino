@@ -18,7 +18,7 @@ class Craps
     @player.place_bet
     choose_pass_line
     come_out_roll
-    @player.play_again?
+    play_again?
   end
 
   def choose_pass_line
@@ -109,4 +109,18 @@ class Craps
     end
   end
 
+  def play_again?
+    puts 'Do you want to keep playing or quit?'
+    puts '  1) play'
+    puts '  2) quit'
+    case gets.strip.to_i
+    when 1
+      play
+    when 2
+      puts "Thanks for playing."
+      @player.casino.menu
+    else
+      'Invalid Input'
+    end
+  end
 end
