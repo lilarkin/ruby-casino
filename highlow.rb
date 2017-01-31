@@ -1,14 +1,9 @@
-require 'pry'
-require_relative 'player'
 require_relative 'deck'
-require_relative 'dice'
 
 class HighLow
-  attr_accessor :player, :bet, :deck
 
   def initialize(player)
     @player = player
-    @bet = 0
     @deck = Deck.new
 
     puts "*** Welcome, #{@player.name}, to High and Low ***"
@@ -49,13 +44,13 @@ class HighLow
  def win_or_lose
    # TODO: if cards equal win condition
    if @choice == 1 && @first_card.value < @second_card.value
-     puts "WIN"
+     puts "You win!"
      payout
    elsif @choice == 2 && @first_card.value > @second_card.value
-     puts "WIN"
+     puts "You win!"
      payout
    else
-     puts "YOU LOSE"
+     puts "You lose."
    end
   end
 
@@ -85,4 +80,3 @@ class HighLow
     puts 'Thanks for playing!'
   end
 end
-

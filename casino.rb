@@ -3,6 +3,7 @@ require 'colorize'
 require 'artii'
 require_relative 'player'
 require_relative 'slots'
+require_relative 'highlow'
 
 class Casino
   # TODO: Handle Mutiple player. Hint: Think Array
