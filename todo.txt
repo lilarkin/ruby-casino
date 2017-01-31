@@ -1,0 +1,16 @@
+Gem discovery: go to rubygems.org and find more gems that you want to implement in your project and use
+
+Find ASCII Art and put it into your games / menus to make it more fun for the end user
+
+[Ability to switch players (player menu, bank roll information)
+Player's bankroll persists if you switch to different players
+Random events occur when changing games that can increase or decrease player's bank roll]
+
+
+Card games (Blackjack, Poker, Casino War, ect...)
+
+Any other Casino game you can think of
+
+Create your own game
+
+Be as creative as possible, you have 2 days for this project and you will be presenting!

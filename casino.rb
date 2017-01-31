@@ -21,7 +21,7 @@ class Casino
     puts '1. Slots'
     puts '2. High / Low'
     print 'Choose a Game: '
-
+    # TODO: Quit command
     case gets.strip.to_i
     when 1
       Slots.new(@player)
@@ -31,7 +31,7 @@ class Casino
       puts 'Invalid Input'
       menu
     end
-
+    menu
   end
 end
 
