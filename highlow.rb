@@ -55,6 +55,7 @@ class HighLow
   end
 
   def payout
+  #TODO: make payout display wallet with losses in all games 
     payout = @bet * 2
     puts "You win $#{payout}."
     @player.get_payout(payout)
