@@ -21,7 +21,8 @@ class Blackjack
     deal_to_player unless @player_stay
     deal_to_dealer if calculate_hand(@dealer_hand) < 18
     won? if calculate_hand(@dealer_hand) > 18 &&  @player_stay
-    hit?
+    hit? unless @player_stay
+    play
   end
 
   def make_bet
@@ -134,5 +135,3 @@ class Blackjack
   end
 
 end
-
-b = Blackjack.new(Player.new)
