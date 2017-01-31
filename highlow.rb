@@ -41,7 +41,6 @@ class HighLow
   end
 
   def win_or_lose
-   # TODO: if cards equal win condition
    if @choice == 1 && @first_card.value < @second_card.value
      puts "You win!"
      @player.get_payout(2)
