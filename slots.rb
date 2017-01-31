@@ -9,10 +9,7 @@ class Slots
     # payout value is multiplier
     @payout = { 'cherry': 1, 'watermelon': 2, 'bell': 3, 'BAR': 4, '7': 5}
     @results = []
-
-    # TODO: rename
-    @bet = 1
-
+    @player.bet = 1
     puts "*** Welcome, #{@player.name}, to the Slot Machines ***"
     choose_to_play
   end
@@ -24,7 +21,7 @@ class Slots
     case gets.strip.to_i
     when 1
       puts "You have $#{@player.wallet.amount} money."
-      @player.place_bet(1)
+      @player.wallet.amount -= 1
       play
     when 2
       quit
@@ -50,17 +47,11 @@ class Slots
   def win_or_lose
     if @results.all? { |symbol| symbol == @results.first }
       puts "You win."
-      payout
+      binding.pry
+      @player.get_payout(@payout[@results.first.to_sym])
     else
       puts "You lose."
     end
-  end
-
-  def payout
-    payout = @bet * @payout[@results.first.to_sym]
-    puts "You win $#{payout}."
-    @player.get_payout(payout)
-    puts "Now you have $#{@player.wallet.amount} money."
   end
 
   def quit

@@ -1,7 +1,7 @@
 require 'pry'
 require 'colorize'
 require 'artii'
-require 'dice'
+require_relative 'dice'
 require_relative 'player'
 require_relative 'slots'
 require_relative 'highlow'
@@ -18,6 +18,7 @@ class Casino
   end
 
   def menu
+    # TODO: out of money, force quit OR get a shady loan
     puts '*** Casino Menu ***'
     puts '1. Slots'
     puts '2. High / Low'

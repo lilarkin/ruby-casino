@@ -12,22 +12,11 @@ class Craps
     play
   end
 
-def play
-  bet
-  choose_pass_line
-  come_out_roll
-  choose_to_play
-end
-
-def bet
-   puts "How much do you want to bet?"
-    bet = gets.chomp.to_i
-    if bet == 0
-      puts "Invalid Bet"
-      make_bet
-    end
-    @bet = bet
-    @player.place_bet(@bet)
+  def play
+    @player.place_bet
+    choose_pass_line
+    come_out_roll
+    choose_to_play
   end
 
   def choose_pass_line
@@ -54,7 +43,7 @@ def bet
   end
 
   def sum
-    value = 0 
+    value = 0
     @dice.result.each { |roll| value += roll }
     value
   end
@@ -65,8 +54,8 @@ def bet
     if @pass_line
       if sum == 7 || sum == 11
         puts 'You win!'
-        payout
-      elsif sum == 2 || sum == 3 || sum == 12 
+        @player.get_payout(2)
+      elsif sum == 2 || sum == 3 || sum == 12
         puts 'You lose.'
       else
         @point = sum
@@ -76,13 +65,13 @@ def bet
     else
       if sum == 2 || sum == 3
         puts 'You win!'
-        payout
+        @player.get_payout(2)
       elsif sum == 12
         puts 'You tied. Please start roll over.'
         come_out_roll
       elsif sum == 7 || sum == 11
         puts "You lose."
-      else 
+      else
         @point = sum
         puts "The point roll is: #{@point}\n\n"
         point_number_roll
@@ -100,29 +89,22 @@ def bet
       if sum == @point
         puts "You rolled: #{@point}"
         puts 'You win!'
-        payout
-      elsif sum == 7 
+        @player.get_payout(2)
+      elsif sum == 7
         puts 'You lose.'
       else
         point_number_roll
       end
     else
-      if sum == 7 
+      if sum == 7
         puts 'You win!'
-        payout 
+        @player.get_payout(2)
       elsif sum == @point
         puts 'You lose.'
-      else 
+      else
         point_number_roll
       end
     end
-  end
-
-  def payout
-    payout = @bet * 2
-    puts "You win $#{payout}."
-    @player.get_payout(payout)
-    puts "Now you have $#{@player.wallet.amount} money."
   end
 
   def choose_to_play

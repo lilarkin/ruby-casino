@@ -13,8 +13,7 @@ class Blackjack
     @player_hand = []
     @player_stay = false
     puts "*** Welcome, #{@player.name}, to Blackjack ***"
-    make_bet
-    play
+    new_game
   end
 
   def play
@@ -23,17 +22,6 @@ class Blackjack
     won? if calculate_hand(@dealer_hand) > 18 &&  @player_stay
     hit? unless @player_stay
     play
-  end
-
-  def make_bet
-    puts "How much do you want to bet?"
-    bet = gets.chomp.to_i
-    if bet == 0
-      puts "Invalid Bet"
-      make_bet
-    end
-    @bet = bet
-    @player.place_bet(@bet)
   end
 
   def deal_to_dealer
@@ -128,6 +116,7 @@ class Blackjack
   end
 
   def new_game
+    @player.place_bet
     @dealer_hand.clear
     @player_hand.clear
     @player_stay = false

@@ -11,21 +11,10 @@ class HighLow
   end
 
   def play
-    make_bet
+    @player.place_bet
     deal_cards
     win_or_lose
     choose_to_play
-  end
-
-  def make_bet
-    puts "How much do you want to bet?"
-    bet = gets.chomp.to_i
-    if bet == 0
-      puts "Invalid Bet"
-      make_bet
-    end
-    @bet = bet
-    @player.place_bet(@bet)
   end
 
   def deal_cards
@@ -45,21 +34,13 @@ class HighLow
    # TODO: if cards equal win condition
    if @choice == 1 && @first_card.value < @second_card.value
      puts "You win!"
-     payout
+     @player.get_payout(2)
    elsif @choice == 2 && @first_card.value > @second_card.value
      puts "You win!"
-     payout
+     @player.get_payout(2)
    else
      puts "You lose."
    end
-  end
-
-  def payout
-  #TODO: make payout display wallet with losses in all games 
-    payout = @bet * 2
-    puts "You win $#{payout}."
-    @player.get_payout(payout)
-    puts "Now you have $#{@player.wallet.amount} money."
   end
 
   def choose_to_play
@@ -79,5 +60,6 @@ class HighLow
 
   def quit
     puts 'Thanks for playing!'
+    @casino.menu
   end
 end
