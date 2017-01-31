@@ -15,11 +15,12 @@ module Interface
   def self.input_error
     error = "Input Error: Enter Valid Number Selection"
     decoration(error, "*")
-    puts error
+    puts error.colorize(:red)
     decoration(error, "*")
   end
 
   def self.decoration(parameter, symbol)
     print symbol * (parameter.length + 6), "\n"
   end
+
 end
