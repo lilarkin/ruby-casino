@@ -20,10 +20,11 @@ class Player
   end
 
   def place_bet
+    @casino.menu if @wallet.amount <= 0
     puts "How much do you want to bet?"
     amount = gets.chomp.to_i
-    if amount == 0 || amount > @wallet.amount
-      puts "Invalid Bet"
+    if amount > @wallet.amount
+      puts "You don't have that much money."
       place_bet
     end
     @bet = amount
