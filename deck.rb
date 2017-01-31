@@ -40,5 +40,3 @@ class Deck
     end
   end
 end
-
-Deck.new

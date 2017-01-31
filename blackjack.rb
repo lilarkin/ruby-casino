@@ -6,23 +6,22 @@ class Blackjack
 
   def initialize(player)
     @player = player
+    @bet
     @deck = Deck.new
     @deck.shuffle
-
-    @dealer_cards = []
-    @player_cards = []
-
+    @dealer_hand = []
+    @player_hand = []
+    @player_stay = false
     puts "*** Welcome, #{@player.name}, to Blackjack ***"
+    make_bet
     play
   end
 
-
   def play
-    make_bet
-    deal_to_dealer
-    display_dealer_hand
-    deal_to_player
-    binding.pry
+    deal_to_player unless @player_stay
+    deal_to_dealer if calculate_hand(@dealer_hand) < 18
+    won? if calculate_hand(@dealer_hand) > 18 &&  @player_stay
+    hit?
   end
 
   def make_bet
@@ -37,35 +36,103 @@ class Blackjack
   end
 
   def deal_to_dealer
-    @dealer_cards << @deck.draw
+    @dealer_hand << @deck.draw
+    puts "The dealer has: "
+    @dealer_hand.each { |card| puts "  #{card.name}" }
+    if calculate_hand(@dealer_hand) > 21
+      puts "The dealer busted."
+      won
+    end
   end
 
   def deal_to_player
-    @player_cards << @deck.draw
+    @player_hand << @deck.draw
+    puts "You have: "
+    @player_hand.each { |card| puts "  #{card.name}" }
+    if calculate_hand(@player_hand) > 21
+      puts "You busted."
+      lose
+    end
   end
 
-  def display_dealer_hand
-    @dealer_cards.each { |card| puts card.name }
+  def hit?
+    puts "Do you want to hit?"
+    puts "  1) Yes"
+    puts "  2) No"
+    case gets.strip.to_i
+    when 1
+      play
+    when 2
+      @player_stay = true
+      play
+    else
+      puts "Invalid Input"
+      hit?
+    end
   end
 
-  def display_player_hand
-
+  def calculate_hand(hand)
+    return 0 if hand.empty?
+    ranks = []
+    hand.each { |card| ranks << card.rank }
+    ranks.map! do |rank|
+      if rank =~ /J|Q|K/
+        10
+      elsif rank == "A"
+        11
+      else
+        rank.to_i
+      end
+    end
+    ranks.reduce(&:+)
   end
 
-  def bust?
+  def won?
+    player = calculate_hand(@player_hand)
+    dealer = calculate_hand(@dealer_hand)
+    puts "You got #{player}."
+    puts "The dealer got #{dealer}."
+    won if player > dealer
+    lose
   end
 
-  def win_or_lose
-    #compare dealer hand to player hand
+  def won
+    puts "You won"
+    puts "You get the payout"
+    choose_to_play
   end
 
-  def payout
+  def lose
+    puts "You lose"
+    choose_to_play
   end
 
   def choose_to_play
+    # TODO: do we want to make this a module?
+    puts 'Do you want to keep playing or quit?'
+    puts '  1) play'
+    puts '  2) quit'
+    case gets.strip.to_i
+    when 1
+      new_game
+    when 2
+      quit
+    else
+      'Invalid Input'
+    end
+  end
+
+  def quit
+    puts 'Thanks for playing!'
+  end
+
+  def new_game
+    @dealer_hand.clear
+    @player_hand.clear
+    @player_stay = false
+    play
   end
 
 end
 
-
-Blackjack.new(Player.new)
+b = Blackjack.new(Player.new)
