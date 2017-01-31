@@ -1,4 +1,6 @@
 require 'pry'
+require 'colorize'
+require 'artii'
 
 class Slots
   attr_accessor :player, :reel, :payout, :results, :bet
