@@ -2,6 +2,7 @@ require_relative 'card_game_rules'
 
 class Card
  attr_accessor :rank, :suit, :color
+ 
  def initialize(rank, suit, color)
    @rank = rank
    @suit = suit

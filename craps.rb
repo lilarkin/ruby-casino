@@ -1,4 +1,6 @@
 require 'pry'
+require 'colorize'
+require 'artii'
 require_relative 'dice'
 require_relative 'player'
 
@@ -87,7 +89,7 @@ class Craps
     puts "You rolled: #{@point}\n\n"
     if @pass_line
       if sum == @point
-        puts "You rolled: #{@point}"
+        # puts "You rolled: #{@point}"
         puts 'You win!'
         @player.get_payout(2)
       elsif sum == 7
@@ -106,4 +108,5 @@ class Craps
       end
     end
   end
+
 end

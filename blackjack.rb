@@ -1,5 +1,6 @@
 require 'pry'
-require_relative 'player'
+require 'colorize'
+require 'artii'
 require_relative 'deck'
 
 class Blackjack
@@ -7,12 +8,18 @@ class Blackjack
   def initialize(player)
     @player = player
     @deck = Deck.new
-    @deck.shuffle
     @dealer_hand = []
     @player_hand = []
-    @player_stay = false
     puts "*** Welcome, #{@player.name}, to Blackjack ***"
     new_game
+  end
+
+  def new_game
+    @player.place_bet
+    @dealer_hand.clear
+    @player_hand.clear
+    @player_stay = false
+    play
   end
 
   def play
@@ -21,6 +28,16 @@ class Blackjack
     won? if calculate_hand(@dealer_hand) > 18 &&  @player_stay
     hit? unless @player_stay
     play
+  end
+
+  def deal_to_player
+    @player_hand << @deck.draw
+    puts "You have: "
+    @player_hand.each { |card| puts "  #{card.name}" }
+    if calculate_hand(@player_hand) > 21
+      puts "You busted."
+      lose
+    end
   end
 
   def deal_to_dealer
@@ -33,14 +50,20 @@ class Blackjack
     end
   end
 
-  def deal_to_player
-    @player_hand << @deck.draw
-    puts "You have: "
-    @player_hand.each { |card| puts "  #{card.name}" }
-    if calculate_hand(@player_hand) > 21
-      puts "You busted."
-      lose
+ def calculate_hand(hand)
+    return 0 if hand.empty?
+    ranks = []
+    hand.each { |card| ranks << card.rank }
+    ranks.map! do |rank|
+      if rank =~ /J|Q|K/
+        10
+      elsif rank == "A"
+        11
+      else
+        rank.to_i
+      end
     end
+    ranks.reduce(&:+)
   end
 
   def hit?
@@ -57,22 +80,6 @@ class Blackjack
       puts "Invalid Input"
       hit?
     end
-  end
-
-  def calculate_hand(hand)
-    return 0 if hand.empty?
-    ranks = []
-    hand.each { |card| ranks << card.rank }
-    ranks.map! do |rank|
-      if rank =~ /J|Q|K/
-        10
-      elsif rank == "A"
-        11
-      else
-        rank.to_i
-      end
-    end
-    ranks.reduce(&:+)
   end
 
   def won?
@@ -95,15 +102,4 @@ class Blackjack
     @player.play_again?
   end
 
-  def quit
-    puts 'Thanks for playing!'
-  end
-
-  def new_game
-    @player.place_bet
-    @dealer_hand.clear
-    @player_hand.clear
-    @player_stay = false
-    play
-  end
 end
