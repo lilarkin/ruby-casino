@@ -85,11 +85,11 @@ class Craps
     sleep(1)
     puts "Please roll again:"
     puts "You rolled: #{roll_dice.join(' and ')}\n\n"
-    @point = sum
-    puts "You rolled: #{@point}\n\n"
+    point2 = sum
+    puts "You rolled: #{point2}\n\n"
     if @pass_line
-      if sum == @point
-        # puts "You rolled: #{@point}"
+      binding.pry
+      if @point == @point2
         puts 'You win!'
         @player.get_payout(2)
       elsif sum == 7
@@ -101,7 +101,7 @@ class Craps
       if sum == 7
         puts 'You win!'
         @player.get_payout(2)
-      elsif sum == @point
+      elsif sum == point2
         puts 'You lose.'
       else
         point_number_roll
