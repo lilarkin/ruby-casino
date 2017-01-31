@@ -1,3 +1,4 @@
+require_relative 'interface'
 require_relative 'wallet'
 
 class Player
@@ -5,7 +6,7 @@ class Player
 
   def initialize(casino)
     @casino = casino
-    puts "What is your name?"
+    Interface.input_prompt("Enter Your Name")
     @name = gets.strip
     @bet = 0
     @wallet = Wallet.new

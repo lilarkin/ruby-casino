@@ -1,6 +1,7 @@
 require 'pry'
 require 'colorize'
 require 'artii'
+require_relative 'interface'
 require_relative 'player'
 require_relative 'slots'
 require_relative 'highlow'
@@ -12,7 +13,7 @@ class Casino
   attr_accessor :player
 
   def initialize
-    puts "Welcome to the Casino".colorize(:magenta)
+    Interface.menu_header("Welcome to the Casino")
     @player = Player.new(self)
     puts "What game do you want to play, #{@player.name}?"
     menu
