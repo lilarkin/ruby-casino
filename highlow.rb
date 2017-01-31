@@ -20,17 +20,27 @@ class HighLow
   def deal_cards
     @deck.shuffle
     @first_card = @deck.draw
-    puts "The first card is: #{@first_card.name}"
-    puts 'The next card will be:'
-    puts '  1) higher'
-    puts '  2) lower'
-    @choice = gets.chomp.to_i
-    # TODO: make sure they only choose 1 or 2 or else error
+    ask_higher_or_lower
     @second_card = @deck.draw
     puts "The second card is #{@second_card.name}"
   end
 
- def win_or_lose
+  def ask_higher_or_lower
+    puts "The first card is: #{@first_card.name}"
+    puts 'The next card will be:'
+    puts '  1) higher'
+    puts '  2) lower'
+    input = gets.chomp.to_i
+    case input
+    when 1,2
+      @choice = input
+    else
+      puts "Invalid Input"
+      ask_higher_or_lower
+    end
+  end
+
+  def win_or_lose
    # TODO: if cards equal win condition
    if @choice == 1 && @first_card.value < @second_card.value
      puts "You win!"
