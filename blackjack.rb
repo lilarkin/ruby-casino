@@ -108,7 +108,7 @@ class Blackjack
     puts '  2) quit'
     case gets.strip.to_i
     when 1
-      play
+      new_game
     when 2
       puts "Thanks for playing."
       @player.casino.menu
