@@ -19,7 +19,7 @@ class Casino
   end
 
   def menu
-    # TODO: out of money, force quit OR get a shady loan
+    check_player_money
     puts '*** Casino Menu ***'
     puts '1. Slots'
     puts '2. High / Low'
@@ -42,6 +42,14 @@ class Casino
     else
       puts 'Invalid Input'
       menu
+    end
+  end
+
+  def check_player_money
+    if @player.wallet.amount <= 0
+      puts "Uh oh. You are out of money"
+      puts "You get kicked out of the casino"
+      exit(0)
     end
   end
 end
