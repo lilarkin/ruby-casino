@@ -30,7 +30,7 @@ class Deck
  end
 
   def draw(num_of_cards = 1)
-    # TODO: what if deck is empty?
+    generate_deck if @cards.empty?
     if num_of_cards > 1
       hand = []
       num_of_cards.times { hand << @cards.pop }
