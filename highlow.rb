@@ -1,5 +1,4 @@
 require_relative 'deck'
-require_relative 'Player'
 
 class HighLow
 
@@ -82,5 +81,3 @@ class HighLow
     puts 'Thanks for playing!'
   end
 end
-
-HighLow.new(Player.new)

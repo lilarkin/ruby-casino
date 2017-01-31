@@ -94,6 +94,7 @@ def bet
     sleep(1)
     puts "Please roll again:"
     puts "You rolled: #{roll_dice.join(' and ')}\n\n"
+    @point = sum
     puts "You rolled: #{@point}\n\n"
     if @pass_line
       if sum == @point
