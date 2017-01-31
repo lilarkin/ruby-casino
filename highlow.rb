@@ -12,11 +12,14 @@ class HighLow
     @deck = Deck.new
 
     puts "*** Welcome, #{@player.name}, to High and Low ***"
-    make_bet
+    play
   end
 
-  def choose_to_play
-    # user chooses to quit
+  def play
+    make_bet
+    deal_cards
+    win_or_lose
+    choose_to_play
   end
 
   def make_bet
@@ -28,7 +31,6 @@ class HighLow
     end
     @bet = bet
     @player.place_bet(@bet)
-    deal_cards
   end
 
   def deal_cards
@@ -42,35 +44,41 @@ class HighLow
     # TODO: make sure they only choose 1 or 2 or else error
     @second_card = @deck.draw
     puts "The second card is #{@second_card.name}"
-    win_or_lose
   end
 
  def win_or_lose
    # TODO: if cards equal win condition
    if @choice == 1 && @first_card.value < @second_card.value
      puts "WIN"
+     payout
    elsif @choice == 2 && @first_card.value > @second_card.value
      puts "WIN"
+     payout
    else
-     puts "LOSE"
+     puts "YOU LOSE"
    end
-    #if win
-      # payout
-    # else
-    # play again
-  end
-
-  def play
-    # a card is drawn
-    # player chooses high or low
-    # card is drawn
-    # cards are compared
-    # players wins or lose
-    win_or_lose
   end
 
   def payout
-    # pays double the bet
+    payout = @bet * 2
+    puts "You win $#{payout}."
+    @player.get_payout(payout)
+    puts "Now you have $#{@player.wallet.amount} money."
+  end
+
+  def choose_to_play
+    # TODO: do we want to make this a module?
+    puts 'Do you want to keep playing or quit?'
+    puts '  1) play'
+    puts '  2) quit'
+    case gets.strip.to_i
+    when 1
+      play
+    when 2
+      quit
+    else
+      'Invalid Input'
+    end
   end
 
   def quit
@@ -78,4 +86,3 @@ class HighLow
   end
 end
 
-HighLow.new(Player.new)
