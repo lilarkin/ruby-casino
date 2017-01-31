@@ -1,4 +1,5 @@
 require_relative 'deck'
+require_relative 'Player'
 
 class HighLow
 
@@ -55,6 +56,7 @@ class HighLow
   end
 
   def payout
+  #TODO: make payout display wallet with losses in all games 
     payout = @bet * 2
     puts "You win $#{payout}."
     @player.get_payout(payout)
@@ -80,3 +82,5 @@ class HighLow
     puts 'Thanks for playing!'
   end
 end
+
+HighLow.new(Player.new)

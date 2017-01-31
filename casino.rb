@@ -1,6 +1,7 @@
 require 'pry'
 require 'colorize'
 require 'artii'
+require 'dice'
 require_relative 'player'
 require_relative 'slots'
 require_relative 'highlow'
