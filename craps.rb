@@ -87,7 +87,6 @@ class Craps
     point2 = sum
     puts "You rolled: #{point2}\n\n"
     if @pass_line
-      binding.pry
       if @point == @point2
         win
       elsif sum == 7
