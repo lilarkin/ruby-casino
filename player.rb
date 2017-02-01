@@ -10,14 +10,18 @@ class Player
     @name = gets.strip
     @bet = 0
     @wallet = Wallet.new
-    puts "You have this amount in your wallet: $#{@wallet.amount}"
+    check_wallet
+  end
+
+  def check_wallet
+    puts "You have $#{@wallet.amount} in your wallet."
   end
 
   def get_payout(multiplier)
     payout = @bet * multiplier
     puts "You win $#{payout}."
     @wallet.amount += payout
-    puts "Now you have $#{@wallet.amount}."
+    check_wallet
   end
 
   def place_bet
@@ -26,9 +30,11 @@ class Player
     amount = gets.chomp.to_i
     if amount > @wallet.amount
       puts "You don't have that much money."
+      check_wallet
       place_bet
     end
     @bet = amount
     @wallet.amount -= @bet
   end
+
 end

@@ -97,7 +97,8 @@ class Blackjack
   end
 
   def lose
-    puts "You lose"
+    puts "You lose."
+    @player.check_wallet
     play_again?
   end
 

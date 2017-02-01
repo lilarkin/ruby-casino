@@ -55,10 +55,9 @@ class Craps
     puts "You rolled: #{roll_dice.join(' and ')}\n\n"
     if @pass_line
       if sum == 7 || sum == 11
-        puts 'You win!'
-        @player.get_payout(2)
+        win
       elsif sum == 2 || sum == 3 || sum == 12
-        puts 'You lose.'
+        lose
       else
         @point = sum
         puts "The point roll is: #{@point}\n\n"
@@ -66,13 +65,12 @@ class Craps
       end
     else
       if sum == 2 || sum == 3
-        puts 'You win!'
-        @player.get_payout(2)
+        win
       elsif sum == 12
         puts 'You tied. Please start roll over.'
         come_out_roll
       elsif sum == 7 || sum == 11
-        puts "You lose."
+        lose
       else
         @point = sum
         puts "The point roll is: #{@point}\n\n"
@@ -90,23 +88,31 @@ class Craps
     if @pass_line
       binding.pry
       if @point == @point2
-        puts 'You win!'
-        @player.get_payout(2)
+        win
       elsif sum == 7
-        puts 'You lose.'
+        lose
       else
         point_number_roll
       end
     else
       if sum == 7
-        puts 'You win!'
-        @player.get_payout(2)
+        win
       elsif sum == point2
-        puts 'You lose.'
+        lose
       else
         point_number_roll
       end
     end
+  end
+
+  def win
+    puts 'You win!'
+    @player.get_payout(2)
+  end
+
+  def lose
+    puts 'You lose.'
+    @player.check_wallet
   end
 
   def play_again?

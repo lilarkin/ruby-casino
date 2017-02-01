@@ -22,8 +22,8 @@ class Slots
     puts '  2) quit'
     case gets.strip.to_i
     when 1
-      puts "You have $#{@player.wallet.amount} money."
       @player.wallet.amount -= 1
+      @player.check_wallet
       play
     when 2
       @player.casino.menu
@@ -46,7 +46,6 @@ class Slots
   def win_or_lose
     if @results.all? { |symbol| symbol == @results.first }
       puts "You win."
-      binding.pry
       @player.get_payout(@payout[@results.first.to_sym])
     else
       puts "You lose."

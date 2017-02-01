@@ -44,15 +44,23 @@ class HighLow
   end
 
   def win_or_lose
-   if @choice == 1 && @first_card.value < @second_card.value
-     puts "You win!"
-     @player.get_payout(2)
-   elsif @choice == 2 && @first_card.value > @second_card.value
-     puts "You win!"
-     @player.get_payout(2)
-   else
-     puts "You lose."
-   end
+    if @choice == 1 && @first_card.value < @second_card.value
+      win
+    elsif @choice == 2 && @first_card.value > @second_card.value
+      win
+    else
+      lose
+    end
+  end
+
+  def win
+    puts "You win!"
+    @player.get_payout(2)
+  end
+
+  def lose
+    puts "You lose."
+    @player.check_wallet
   end
 
   def play_again?

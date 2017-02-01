@@ -9,7 +9,6 @@ require_relative 'blackjack'
 require_relative 'craps'
 
 class Casino
-  # TODO: Handle Mutiple player. Hint: Think Array
   attr_accessor :player
 
   def initialize
