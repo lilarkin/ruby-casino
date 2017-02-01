@@ -92,8 +92,7 @@ class Blackjack
   end
 
   def won
-    puts "You won"
-    puts "You get the payout"
+    @player.get_payout(2)
     play_again?
   end
 
