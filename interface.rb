@@ -11,8 +11,7 @@ module Interface
   end
 
   def self.header(title)
-    puts ""
-    puts ("   #{title}   ").colorize(:magenta)
+    puts ("   #{title}   ").colorize(:light_magenta)
     decoration(title, "-")
   end
 
@@ -52,6 +51,10 @@ module Interface
     decoration(error, "*")
     puts error.colorize(:red)
     decoration(error, "*")
+  end
+
+  def self.money_statement(prompt)
+    puts (prompt).colorize(:green)
   end
 
   def self.decoration(parameter, symbol)

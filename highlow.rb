@@ -8,8 +8,7 @@ class HighLow
   def initialize(player)
     @player = player
     @deck = Deck.new
-
-    Interface.welcome("*** Welcome, #{@player.name}, to High and Low ***")
+    Interface.welcome("High-Low")
     play
   end
 
@@ -25,14 +24,14 @@ class HighLow
     @first_card = @deck.draw
     ask_higher_or_lower
     @second_card = @deck.draw
-    puts "The second card is: #{@second_card.name}"
+    Interface.line("The second card is: #{@second_card.name}")
   end
 
   def ask_higher_or_lower
-    puts "The first card is: #{@first_card.name}"
+    Interface.line("The first card is: #{@first_card.name}")
     Interface.line('The next card will be:')
-    puts '  1) higher'
-    puts '  2) lower'
+    puts '  1) Higher'
+    puts '  2) Lower'
     Interface.input_prompt('Enter Your Answer')
     input = gets.chomp.to_i
     case input
@@ -66,8 +65,8 @@ class HighLow
 
   def play_again?
     Interface.header('Do you want to keep playing or quit?')
-    puts '  1) play'
-    puts '  2) quit'
+    puts '  1) Play'
+    puts '  2) Quit'
     Interface.input_prompt('Enter Your Answer')
     case gets.strip.to_i
     when 1

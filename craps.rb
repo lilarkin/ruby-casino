@@ -10,7 +10,7 @@ class Craps
     @player = player
     @dice = Dice.new
 
-    Interface.welcome("*** Welcome, #{@player.name}, to Craps ***")
+    Interface.welcome("Craps")
     play
   end
 
