@@ -10,7 +10,7 @@ class Blackjack
     @deck = Deck.new
     @dealer_hand = []
     @player_hand = []
-    Interface.welcome("*** Welcome, #{@player.name}, to Blackjack ***")
+    Interface.welcome("Blackjack")
     new_game
   end
 
@@ -115,8 +115,8 @@ class Blackjack
 
   def play_again?
     Interface.line('Do you want to keep playing or quit?')
-    puts '  1) play'
-    puts '  2) quit'
+    puts '  1) Play'
+    puts '  2) Leave'
     Interface.input_prompt("Enter Your Answer")
     case gets.strip.to_i
     when 1
