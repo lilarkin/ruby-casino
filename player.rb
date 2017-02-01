@@ -17,7 +17,7 @@ class Player
     payout = @bet * multiplier
     puts "You win $#{payout}."
     @wallet.amount += payout
-    puts "Now you have $#{@wallet.amount} money."
+    puts "Now you have $#{@wallet.amount}."
   end
 
   def place_bet
