@@ -77,6 +77,7 @@ class HighLow
       @player.casino.menu
     else
       Interface.invalid('Invalid Input')
+      play_again?
     end
   end
 end
