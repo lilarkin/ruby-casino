@@ -24,7 +24,6 @@ class Slots
     when 1
       @player.wallet.amount -= 1
       @player.check_wallet
-      play
     when 2
       @player.casino.menu
     else
