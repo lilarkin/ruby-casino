@@ -23,13 +23,13 @@ class Casino
 
   def menu
     check_player_money
-    puts '*** Casino Menu ***'
+    Interface.header('*** Casino Menu ***')
     puts '1. Slots'
     puts '2. High / Low'
     puts '3. Blackjack'
     puts '4. Craps'
     puts '5. Leave Casino'
-    print 'Choose a Game: '
+    Interface.line('Choose a Game: ')
     case gets.strip.to_i
     when 1
       Slots.new(@player)
@@ -40,18 +40,18 @@ class Casino
     when 4
       Craps.new(@player)
     when 5
-      puts 'Thank for playing!'
+      Interface.welcome('Thank for playing!')
       exit(0)
     else
-      puts 'Invalid Input'
+      Interface.invalid('Invalid Input')
       menu
     end
   end
 
   def check_player_money
     if @player.wallet.amount <= 0
-      puts "Uh oh. You are out of money."
-      puts "You get kicked out of the casino"
+      puts "Uh oh. You are out of money.".colorize(:red)
+      puts "You get kicked out of the casino".colorize(:red)
       exit(0)
     end
   end

@@ -27,6 +27,7 @@ class Player
   def place_bet
     @casino.menu if @wallet.amount <= 0
     puts "How much do you want to bet?"
+    Interface.input_prompt("Enter Your Answer")
     amount = gets.chomp.to_i
     if amount > @wallet.amount
       puts "You don't have that much money."
