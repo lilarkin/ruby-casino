@@ -10,7 +10,7 @@ class Blackjack
     @deck = Deck.new
     @dealer_hand = []
     @player_hand = []
-    puts "*** Welcome, #{@player.name}, to Blackjack ***"
+    Interface.welcome("*** Welcome, #{@player.name}, to Blackjack ***")
     new_game
   end
 
@@ -33,7 +33,7 @@ class Blackjack
 
   def deal_to_player
     @player_hand << @deck.draw
-    puts "You have: "
+    Interface.line("You have: ")
     @player_hand.each { |card| puts "  #{card.name}" }
     if calculate_hand(@player_hand) > 21
       puts "You busted."
@@ -43,7 +43,7 @@ class Blackjack
 
   def deal_to_dealer
     @dealer_hand << @deck.draw
-    puts "The dealer has: "
+    Interface.line("The dealer has: ")
     @dealer_hand.each { |card| puts "  #{card.name}" }
     if calculate_hand(@dealer_hand) > 21
       puts "The dealer busted."
@@ -73,9 +73,10 @@ class Blackjack
   end
 
   def hit?
-    puts "Do you want to hit?"
+    Interface.line("Do you want to hit?")
     puts "  1) Yes"
     puts "  2) No"
+    Interface.input_prompt("Enter Your Answer")
     case gets.strip.to_i
     when 1
       play
@@ -83,7 +84,7 @@ class Blackjack
       @player_stay = true
       play
     else
-      puts "Invalid Input"
+      Interface.invalid("Invalid Input")
       hit?
     end
   end
@@ -98,28 +99,30 @@ class Blackjack
   end
 
   def won
+    Interface.winner("You win!")
     @player.get_payout(2)
     play_again?
   end
 
   def lose
-    puts "You lose."
+    Interface.loser("You lose.")
     @player.check_wallet
     play_again?
   end
 
   def play_again?
-    puts 'Do you want to keep playing or quit?'
+    Interface.line('Do you want to keep playing or quit?')
     puts '  1) play'
     puts '  2) quit'
+    Interface.input_prompt("Enter Your Answer")
     case gets.strip.to_i
     when 1
       new_game
     when 2
-      puts "Thanks for playing."
+      Interface.welcome("Thanks for playing.")
       @player.casino.menu
     else
-      'Invalid Input'
+      Interface.invalid('Invalid Input')
     end
   end
 end
