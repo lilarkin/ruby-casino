@@ -13,7 +13,7 @@ module Interface
   def self.header(title)
     puts ""
     puts ("   #{title}   ").colorize(:magenta)
-    decoration(title, "_")
+    decoration(title, "-")
   end
 
   def self.line(line)

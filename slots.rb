@@ -8,9 +8,9 @@ class Slots
 
   def initialize(player)
     @player = player
-    @reel = ['cherry', 'watermelon', 'bell', 'BAR', '7']
+    @reel = ["\u26C4", "\u26A1", "\u269C", "\u2618", '7']
     # payout value is multiplier
-    @payout = { 'cherry': 1, 'watermelon': 2, 'bell': 3, 'BAR': 4, '7': 5}
+    @payout = { "\u26C4": 1, "\u26A1": 2, "\u269C": 3, "\u2618": 4, '7': 5}
     @results = []
     @player.bet = 1
     Interface.welcome("Slots")
@@ -41,11 +41,11 @@ class Slots
   def spin
     3.times { @results.push(@reel.sample) }
     sleep(1)
-    print "| #{@results.first} |"
+    print "|  #{@results.first}  |"
     sleep(1)
-    print " #{@results[1]} |"
+    print "  #{@results[1]}  |"
     sleep(1)
-    print " #{@results.last} |"
+    print "  #{@results.last}  |"
     sleep(1)
     puts ""
   end
