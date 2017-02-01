@@ -4,7 +4,7 @@ require 'artii'
 require_relative 'deck'
 
 class Blackjack
-
+  attr_accessor :player_hand
   def initialize(player)
     @player = player
     @deck = Deck.new
@@ -16,6 +16,7 @@ class Blackjack
 
   def new_game
     @player.place_bet
+    @deck.shuffle
     @dealer_hand.clear
     @player_hand.clear
     @player_stay = false
@@ -50,7 +51,7 @@ class Blackjack
     end
   end
 
- def calculate_hand(hand)
+  def calculate_hand(hand)
     return 0 if hand.empty?
     ranks = []
     hand.each { |card| ranks << card.rank }
@@ -63,7 +64,12 @@ class Blackjack
         rank.to_i
       end
     end
-    ranks.reduce(&:+)
+    total = ranks.reduce(&:+)
+    while total > 21 || ranks.include?(11)
+      ranks[ranks.index(11)] = 1
+      total = ranks.reduce(&:+)
+    end
+    total
   end
 
   def hit?
