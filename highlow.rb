@@ -30,7 +30,7 @@ class HighLow
 
   def ask_higher_or_lower
     puts "The first card is: #{@first_card.name}"
-    Interface.line'The next card will be:'
+    Interface.line('The next card will be:')
     puts '  1) higher'
     puts '  2) lower'
     Interface.input_prompt('Enter Your Answer')

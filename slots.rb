@@ -2,6 +2,7 @@ require 'pry'
 require 'colorize'
 require 'artii'
 
+
 class Slots
   attr_accessor :player, :reel, :payout, :results, :bet
 
@@ -12,14 +13,15 @@ class Slots
     @payout = { 'cherry': 1, 'watermelon': 2, 'bell': 3, 'BAR': 4, '7': 5}
     @results = []
     @player.bet = 1
-    puts "*** Welcome, #{@player.name}, to the Slot Machines ***"
+    Interface.welcome("*** Welcome, #{@player.name}, to the Slot Machines ***")
     play
   end
 
   def play
-    puts 'Please insert $1 to play.'
+    Interface.line('Please insert $1 to play.')
     puts '  1) spin'
     puts '  2) quit'
+    Interface.input_prompt("Enter You Answer")
     case gets.strip.to_i
     when 1
       @player.wallet.amount -= 1
@@ -27,7 +29,7 @@ class Slots
     when 2
       @player.casino.menu
     else
-      puts "Invalid Input"
+      Interface.invalid("Invalid Input")
       play
     end
     @results.clear
@@ -37,32 +39,33 @@ class Slots
   end
 
   def spin
-     3.times { @results.push(@reel.sample) }
+    3.times { @results.push(@reel.sample) }
     @results.each { |symbol| print "| #{symbol} " }
     print "|\n"
   end
 
   def win_or_lose
     if @results.all? { |symbol| symbol == @results.first }
-      puts "You win."
+      Interface.winner("You win.")
       @player.get_payout(@payout[@results.first.to_sym])
     else
-      puts "You lose."
+      Interface.loser("You lose.")
     end
   end
 
   def play_again?
-    puts 'Do you want to keep playing or quit?'
+    Interface.line('Do you want to keep playing or quit?')
     puts '  1) play'
     puts '  2) quit'
+    Interface.input_prompt("Enter You Answer")
     case gets.strip.to_i
     when 1
       play
     when 2
-      puts "Thanks for playing."
+      Interface.welcome("Thanks for playing.")
       @player.casino.menu
     else
-      'Invalid Input'
+      Interface.invalid('Invalid Input')
     end
   end
 end
