@@ -9,7 +9,7 @@ class HighLow
     @player = player
     @deck = Deck.new
 
-    puts "*** Welcome, #{@player.name}, to High and Low ***"
+    Interface.welcome("*** Welcome, #{@player.name}, to High and Low ***")
     play
   end
 
@@ -25,20 +25,21 @@ class HighLow
     @first_card = @deck.draw
     ask_higher_or_lower
     @second_card = @deck.draw
-    puts "The second card is #{@second_card.name}"
+    puts "The second card is: #{@second_card.name}"
   end
 
   def ask_higher_or_lower
     puts "The first card is: #{@first_card.name}"
-    puts 'The next card will be:'
+    Interface.line'The next card will be:'
     puts '  1) higher'
     puts '  2) lower'
+    Interface.input_prompt('Enter Your Answer')
     input = gets.chomp.to_i
     case input
     when 1,2
       @choice = input
     else
-      puts "Invalid Input"
+      Interface.invalid("Invalid Input")
       ask_higher_or_lower
     end
   end
@@ -59,22 +60,23 @@ class HighLow
   end
 
   def lose
-    puts "You lose."
+    Interface.loser("You lose.")
     @player.check_wallet
   end
 
   def play_again?
-    puts 'Do you want to keep playing or quit?'
+    Interface.header('Do you want to keep playing or quit?')
     puts '  1) play'
     puts '  2) quit'
+    Interface.input_prompt('Enter Your Answer')
     case gets.strip.to_i
     when 1
       play
     when 2
-      puts "Thanks for playing."
+      Interface.welcome("Thanks for playing.")
       @player.casino.menu
     else
-      'Invalid Input'
+      Interface.invalid('Invalid Input')
     end
   end
 end

@@ -4,12 +4,22 @@ require 'artii'
 
 module Interface
 
-  def self.menu_header(title)
+  def self.welcome(title)
     puts ""
     decoration(title, "-")
     puts ("   #{title}   ").colorize(:blue)
     decoration(title, "-")
   end
+
+def self.header(title)
+  puts ""
+  puts ("#{title}").colorize(:light_blue)
+end
+
+def self.line(line)
+  puts ""
+  puts ("#{line}").colorize(:light_blue)
+end
 
   def self.input_prompt(prompt)
     puts ""
@@ -21,6 +31,20 @@ module Interface
     decoration(win_statement, "~")
     puts ("   #{win_statement}   ").colorize(:green)
     decoration(win_statement, "~")
+  end 
+
+  def self.loser(lose_statement)
+    puts ""
+    decoration(lose_statement, "^")
+    puts ("   #{lose_statement}   ").colorize(:yellow)
+    decoration(lose_statement, "^")
+  end
+
+  def self.invalid(invalid_statement)
+    puts ""
+    decoration(invalid_statement, "*")
+    puts ("   #{invalid_statement}   ").colorize(:red)
+    decoration(invalid_statement, "*")
   end
 
   def self.input_error

@@ -12,7 +12,7 @@ class Casino
   attr_accessor :player
 
   def initialize
-    Interface.menu_header("Welcome to the Casino")
+    Interface.welcome("Welcome to the Casino")
     @player = Player.new(self)
     puts "What game do you want to play, #{@player.name}?"
     menu
