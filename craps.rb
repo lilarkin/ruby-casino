@@ -10,7 +10,7 @@ class Craps
     @player = player
     @dice = Dice.new
 
-    puts "*** Welcome, #{@player.name}, to Craps ***"
+    Interface.welcome("*** Welcome, #{@player.name}, to Craps ***")
     play
   end
 
@@ -23,9 +23,10 @@ class Craps
 
   def choose_pass_line
     @pass_line = true
-    puts 'Do you want to bet Pass or Don\'t Pass Line?'
+    Interface.line('Do you want to bet Pass or Don\'t Pass Line?')
     puts '  1) Pass Line'
     puts '  2) Don\'t Pass Line'
+    Interface.input_prompt("Enter Your Answer")
     case gets.strip.to_i
       when 1
         roll_dice
@@ -33,7 +34,7 @@ class Craps
         @pass_line = false
         roll_dice
     else
-      puts 'Invalid Input'
+      Interface.invalid('Invalid Input')
       choose_pass_line
     end
   end
@@ -51,7 +52,7 @@ class Craps
   end
 
   def come_out_roll
-    puts "Please roll the dice:"
+    Interface.line("Please roll the dice:")
     puts "You rolled: #{roll_dice.join(' and ')}\n\n"
     if @pass_line
       if sum == 7 || sum == 11
@@ -67,7 +68,7 @@ class Craps
       if sum == 2 || sum == 3
         win
       elsif sum == 12
-        puts 'You tied. Please start roll over.'
+        puts 'You tied. Please start roll over.'.colorize(:magenta)
         come_out_roll
       elsif sum == 7 || sum == 11
         lose
@@ -81,7 +82,7 @@ class Craps
 
   def point_number_roll
     sleep(1)
-    puts "Please roll again:"
+    Interface.line("Please roll again:")
     puts "You rolled: #{roll_dice.join(' and ')}\n\n"
     point2 = sum
     puts "You rolled: #{point2}\n\n"
@@ -106,27 +107,28 @@ class Craps
   end
 
   def win
-    puts 'You win!'
+    Interface.winner('You win!')
     @player.get_payout(2)
   end
 
   def lose
-    puts 'You lose.'
+    Interface.loser('You lose.')
     @player.check_wallet
   end
 
   def play_again?
-    puts 'Do you want to keep playing or quit?'
+    Interface.line('Do you want to keep playing or quit?')
     puts '  1) play'
     puts '  2) quit'
+    Interface.input_prompt("Enter Your Answer")
     case gets.strip.to_i
     when 1
       play
     when 2
-      puts "Thanks for playing."
+      Interface.welcome("Thanks for playing.")
       @player.casino.menu
     else
-      'Invalid Input'
+      Interface.invalid('Invalid Input')
     end
   end
 end
