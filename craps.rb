@@ -55,9 +55,9 @@ class Craps
     Interface.line("Please roll the dice:")
     puts "You rolled: #{roll_dice.join(' and ')}\n\n"
     if @pass_line
-      if sum =~ /7|11/   #== 7 || sum == 11
+      if sum =~ /7|11/   
         win
-      elsif sum =~ /2|3|12/   #sum == 2 || sum == 3 || sum == 12
+      elsif sum =~ /2|3|12/   
         lose
       else
         @point = sum
@@ -65,12 +65,12 @@ class Craps
         point_number_roll
       end
     else
-      if sum =~ /2|3/   #== 2 || sum == 3
+      if sum =~ /2|3/   
         win
       elsif sum == 12
         puts 'You tied. Please start roll over.'.colorize(:magenta)
         come_out_roll
-      elsif sum =~ /7|11/    #== 7 || sum == 11
+      elsif sum =~ /7|11/   
         lose
       else
         @point = sum
