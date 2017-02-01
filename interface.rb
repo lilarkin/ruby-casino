@@ -58,4 +58,8 @@ end
     print symbol * (parameter.length + 6), "\n"
   end
 
+  def self.win
+    
+  end
+
 end
