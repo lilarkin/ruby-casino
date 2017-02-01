@@ -14,7 +14,7 @@ class Player
   end
 
   def check_wallet
-    puts "\nYou have $#{@wallet.amount} in your wallet.\n".colorize(:magenta)
+    puts "\nYou have $#{@wallet.amount} in your wallet.\n".colorize(:green)
   end
 
   def get_payout(multiplier)

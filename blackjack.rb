@@ -117,15 +117,15 @@ class Blackjack
     Interface.line('Do you want to keep playing or quit?')
     puts '  1) Play'
     puts '  2) Leave'
-    Interface.input_prompt("Enter Your Answer")
+    Interface.input_prompt("Make A Selection")
     case gets.strip.to_i
     when 1
       new_game
     when 2
-      Interface.welcome("Thanks for playing.")
+      Interface.welcome("Thanks for playings")
       @player.casino.menu
     else
-      Interface.invalid('Invalid Input')
+      Interface.invalid('Invalid Input: Pick a Number')
     end
   end
 end

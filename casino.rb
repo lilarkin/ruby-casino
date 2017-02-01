@@ -17,15 +17,14 @@ class Casino
     puts a.asciify('Casino!').colorize(:green)
     Interface.welcome("Welcome to the Casino")
     @player = Player.new(self)
-    puts "What game do you want to play, #{@player.name}?"
     menu
   end
 
   def menu
     check_player_money
-    Interface.header('*** Casino Menu ***')
+    Interface.header('Casino Menu')
     puts '  1. Slots'
-    puts '  2. High / Low'
+    puts '  2. High-Low'
     puts '  3. Blackjack'
     puts '  4. Craps'
     puts '  5. <- Leave Casino'
@@ -43,7 +42,7 @@ class Casino
       Interface.welcome('Thank for playing!')
       exit(0)
     else
-      Interface.invalid('Invalid Input')
+      Interface.invalid('Invalid Input: Select A Number')
       menu
     end
   end
@@ -52,6 +51,7 @@ class Casino
     if @player.wallet.amount <= 0
       puts "Uh oh. You are out of money.".colorize(:red)
       puts "You get kicked out of the casino".colorize(:red)
+      sleep(1)
       exit(0)
     end
   end

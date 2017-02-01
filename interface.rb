@@ -12,13 +12,13 @@ module Interface
 
   def self.header(title)
     puts ""
-    puts ("   #{title}   ").colorize(:light_blue)
+    puts ("   #{title}   ").colorize(:magenta)
     decoration(title, "_")
   end
 
   def self.line(line)
     puts ""
-    puts ("#{line}").colorize(:light_blue)
+    puts ("#{line}").colorize(:light_magenta)
   end
 
   def self.input_prompt(prompt)

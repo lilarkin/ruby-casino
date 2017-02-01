@@ -117,8 +117,8 @@ class Craps
 
   def play_again?
     Interface.line('Do you want to keep playing or quit?')
-    puts '  1) play'
-    puts '  2) quit'
+    puts '  1) Play'
+    puts '  2) Quit'
     Interface.input_prompt("Enter Your Answer")
     case gets.strip.to_i
     when 1

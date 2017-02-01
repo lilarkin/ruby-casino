@@ -13,7 +13,7 @@ class Slots
     @payout = { 'cherry': 1, 'watermelon': 2, 'bell': 3, 'BAR': 4, '7': 5}
     @results = []
     @player.bet = 1
-    Interface.welcome("Welcome to the Slot Machines, #{@player.name}")
+    Interface.welcome("Slots")
     play
   end
 
@@ -29,7 +29,7 @@ class Slots
     when 2
       @player.casino.menu
     else
-      Interface.invalid("Invalid Input")
+      Interface.invalid("Invalid Input: Select a Number")
       play
     end
     @results.clear
