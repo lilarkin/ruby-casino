@@ -33,6 +33,9 @@ class Player
       puts "You don't have that much money."
       check_wallet
       place_bet
+    elsif amount == 0
+      Interface.invalid("Invalid Input: That's not an amount")
+      place_bet
     end
     @bet = amount
     @wallet.amount -= @bet

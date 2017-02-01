@@ -24,8 +24,11 @@ class Blackjack
   end
 
   def play
+    sleep(1)
     deal_to_player unless @player_stay
+    sleep(1)
     deal_to_dealer if calculate_hand(@dealer_hand) < 18
+    sleep(1)
     won? if calculate_hand(@dealer_hand) > 18 &&  @player_stay
     hit? unless @player_stay
     play
@@ -65,7 +68,7 @@ class Blackjack
       end
     end
     total = ranks.reduce(&:+)
-    while total > 21 || ranks.include?(11)
+    while total > 21 && ranks.include?(11)
       ranks[ranks.index(11)] = 1
       total = ranks.reduce(&:+)
     end
