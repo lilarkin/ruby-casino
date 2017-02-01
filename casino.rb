@@ -47,7 +47,7 @@ class Casino
 
   def check_player_money
     if @player.wallet.amount <= 0
-      puts "Uh oh. You are out of money"
+      puts "Uh oh. You are out of money."
       puts "You get kicked out of the casino"
       exit(0)
     end

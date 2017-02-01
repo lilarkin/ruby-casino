@@ -54,7 +54,7 @@ class HighLow
   end
 
   def win
-    puts "You win!"
+    Interface.winner("You win!")
     @player.get_payout(2)
   end
 
