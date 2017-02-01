@@ -12,6 +12,9 @@ class Casino
   attr_accessor :player
 
   def initialize
+    puts ""
+    a = Artii::Base.new
+    puts a.asciify('Casino!').colorize(:green)
     Interface.welcome("Welcome to the Casino")
     @player = Player.new(self)
     puts "What game do you want to play, #{@player.name}?"

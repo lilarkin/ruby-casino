@@ -5,7 +5,6 @@ require 'artii'
 module Interface
 
   def self.welcome(title)
-    puts ""
     decoration(title, "-")
     puts ("   #{title}   ").colorize(:blue)
     decoration(title, "-")
@@ -31,7 +30,7 @@ end
     decoration(win_statement, "~")
     puts ("   #{win_statement}   ").colorize(:green)
     decoration(win_statement, "~")
-  end 
+  end
 
   def self.loser(lose_statement)
     puts ""
@@ -59,7 +58,7 @@ end
   end
 
   def self.win
-    
+
   end
 
 end
