@@ -24,12 +24,12 @@ class Casino
   def menu
     check_player_money
     Interface.header('*** Casino Menu ***')
-    puts '1. Slots'
-    puts '2. High / Low'
-    puts '3. Blackjack'
-    puts '4. Craps'
-    puts '5. Leave Casino'
-    Interface.line('Choose a Game: ')
+    puts '  1. Slots'
+    puts '  2. High / Low'
+    puts '  3. Blackjack'
+    puts '  4. Craps'
+    puts '  5. <- Leave Casino'
+    Interface.input_prompt('Choose a Game')
     case gets.strip.to_i
     when 1
       Slots.new(@player)

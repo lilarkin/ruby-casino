@@ -10,15 +10,16 @@ module Interface
     decoration(title, "-")
   end
 
-def self.header(title)
-  puts ""
-  puts ("#{title}").colorize(:light_blue)
-end
+  def self.header(title)
+    puts ""
+    puts ("   #{title}   ").colorize(:light_blue)
+    decoration(title, "_")
+  end
 
-def self.line(line)
-  puts ""
-  puts ("#{line}").colorize(:light_blue)
-end
+  def self.line(line)
+    puts ""
+    puts ("#{line}").colorize(:light_blue)
+  end
 
   def self.input_prompt(prompt)
     puts ""
@@ -56,9 +57,4 @@ end
   def self.decoration(parameter, symbol)
     print symbol * (parameter.length + 6), "\n"
   end
-
-  def self.win
-
-  end
-
 end

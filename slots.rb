@@ -13,15 +13,15 @@ class Slots
     @payout = { 'cherry': 1, 'watermelon': 2, 'bell': 3, 'BAR': 4, '7': 5}
     @results = []
     @player.bet = 1
-    Interface.welcome("*** Welcome, #{@player.name}, to the Slot Machines ***")
+    Interface.welcome("Welcome to the Slot Machines, #{@player.name}")
     play
   end
 
   def play
-    Interface.line('Please insert $1 to play.')
-    puts '  1) spin'
-    puts '  2) quit'
-    Interface.input_prompt("Enter You Answer")
+    Interface.line('Insert $1 to Play')
+    puts '  1) Spin'
+    puts '  2) Leave'
+    Interface.input_prompt("Make A Selection")
     case gets.strip.to_i
     when 1
       @player.wallet.amount -= 1
@@ -40,37 +40,24 @@ class Slots
 
   def spin
     3.times { @results.push(@reel.sample) }
-    @results.each { |symbol| print "| #{symbol} " }
-    print "|\n"
+    sleep(1)
+    print "| #{@results.first} |"
+    sleep(1)
+    print " #{@results[1]} |"
+    sleep(1)
+    print " #{@results.last} |"
+    sleep(1)
+    puts ""
   end
 
   def win_or_lose
     if @results.all? { |symbol| symbol == @results.first }
-      Interface.winner("You win.")
+      Interface.winner("You Won")
       @player.get_payout(@payout[@results.first.to_sym])
+      sleep(1)
     else
-      Interface.loser("You lose.")
-    end
-  end
-
-  def play_again?
-    Interface.line('Do you want to keep playing or quit?')
-    puts '  1) play'
-    puts '  2) quit'
-    Interface.input_prompt("Enter You Answer")
-    case gets.strip.to_i
-    when 1
-      play
-    when 2
-      Interface.welcome("Thanks for playing.")
-      @player.casino.menu
-    else
-      Interface.invalid('Invalid Input')
+      Interface.loser("You Lost")
+      sleep(1)
     end
   end
 end
-
-# BONUS
-# probability
-# free spin
-# play different slots (dif values)
